@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:IVKv5j425jgmBldb7FvGC
+SUMMARY:Fwd: Cognizant next round of selection process is scheduled on 10th
+	 September 2025\, 9.00 am SJT 717
+DTSTAMP:20250908T164406Z
+DTSTART:20250908T032100Z
+DESCRIPTION:Company: Fwd\nLocation: Vellore\nRole: Not Specified\nBatch: No
+	t Mentioned\nDeadline: Not Mentioned\n\n---------- Forwarded message -----
+	----\nvitianscdc2026@vitstudent.ac.in>\nSeptember 2025\, 9.00 am SJT 717\n
+	To: Vellore and Chennai Campus <vitianscdc2026@vitstudent.ac.in>\nCognizan
+	t next round of selection process is scheduled on  10th September\n2025\, 
+	9.00 am SJT 717\nPlease find the shortlisted students list.\nWe’re pleased
+	 to share the list of candidates who have successfully cleared\nthe *hacka
+	thon evaluation* and are shortlisted for the *in-person technical\nintervi
+	ew* as part of the NPN SCM hiring process. The details for the\ninterview\
+	nare as follows:-\n*Date & Time*\n*Interview Venue*\n* 10th September 2025
+	\, 9.00 am*\n*Vellore Institute of Technology\, Vellore Campus\, Tiruvalam
+	 Rd\, Katpadi\,\nVellore\, Tamil Nadu 632014*\nCandidates will receive an 
+	email from Superset *(*\n*notifications@email.joinsuperset.com*\n<notifica
+	tions@email.joinsuperset.com>*)* with the interview link (as per
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

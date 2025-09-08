@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:PpZ0c7q6C1nnlN839sMsF
+SUMMARY:Placement Drive
+DTSTAMP:20250908T162306Z
+DTSTART:20250905T145000Z
+DESCRIPTION:---------- Forwarded message ---------\nFrom: 'Helpdesk CDC' vi
+	a VITIANS CDC Group\, Vellore and Chennai Campus <\nvitianscdc2026@vitstud
+	ent.ac.in>\nDate: Fri\, 5 Sep\, 2025\, 8:20 pm\nSubject: Congratulations!!
+	 Toshiba Software India super dream offer\nplacement selection list 2026 B
+	atch\nTo: <students.cdc2026@vitap.ac.in>\, Vellore and Chennai Campus <\nv
+	itianscdc2026@vitstudent.ac.in>\, <vitlions2026@vitbhopal.ac.in>\n\n\nCong
+	ratulations!!\n\nToshiba Software India super dream offer placement select
+	ion list 2026 Batch\nFirst Name Last Name Reg.no\nHarsh Ambastha 22BCE0849
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

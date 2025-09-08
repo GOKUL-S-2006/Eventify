@@ -1,0 +1,30 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:JJx8PZZhW61sA-IuJvKLC
+SUMMARY:Fwd: Static Systems Electronics P Ltd Regular internship Registrati
+	on 2026 Batch
+DTSTAMP:20250908T164907Z
+DTSTART:20250908T114000Z
+DESCRIPTION:Company: Fwd\nLocation: Online / Not Specified\nRole: Not Speci
+	fied\nBatch: 2026\nDeadline: Not Mentioned\n\n---------- Forwarded message
+	 ---------\nvitianscdc2026@vitstudent.ac.in>\n2026 Batch\nTo: <vitlions202
+	6@vitbhopal.ac.in>\, <students.cdc2026@vitap.ac.in>\, Vellore\nand Chennai
+	 Campus <vitianscdc2026@vitstudent.ac.in>\nstipend of INR 15\,000 for M.Te
+	ch candidates\, for a duration of 10 months.\nThe candidate must be eligib
+	le\, qualified\, stable\, and deserving. Provided\nthese criteria are fulf
+	illed\, we shall have no objections.\nM.Tech Mechanical & Electrical Engin
+	eers related branches\nCompany link :\nhttps://docs.google.com/forms/d/e/1
+	FAIpQLSe0SOyu7sQF1xWHxCAFqSmnipmwQUaGL6RKYu6sL7-gmY5u8w/viewform\n--\nWarm
+	 regards\n*Dr. V. Samuel Rajkumar\,* *B.E.\,MBA\, MHRM\, PhD*\nDirector(Ca
+	reer Development Centre)\nVIT Vellore\n*Vellore Institute of Technology (V
+	IT)\, India -*\n- *Engineering and Technology: 142nd in the World and 9th 
+	in India(QS\nWorld University Rankings by Subject 2025)*\n- *Four subjects
+	 (CS&IT\, data science & AI\, EEE and material science)
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

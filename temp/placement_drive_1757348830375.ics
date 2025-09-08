@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:vGy3welEPF1PUmOkccRVQ
+SUMMARY:Placement Drive
+DTSTAMP:20250908T162710Z
+DTSTART:20250905T145000Z
+DESCRIPTION:---------- Forwarded message ---------\nvitianscdc2026@vitstude
+	nt.ac.in>\nplacement selection list 2026 Batch\nTo: <students.cdc2026@vita
+	p.ac.in>\, Vellore and Chennai Campus <\nvitianscdc2026@vitstudent.ac.in>\
+	, <vitlions2026@vitbhopal.ac.in>\nCongratulations!!\nToshiba Software Indi
+	a super dream offer placement selection list 2026 Batch\nFirst Name Last N
+	ame Reg.no\nHarsh Ambastha 22BCE0849\nA.O. Navin Kumar 22BCE1020\nAashish 
+	G 22BCE5067\nAditya Mittal 22BIT0645\nLaukik Wadhwa 22BCE2576\nKrish Sahu 
+	22BLC1171\nHariharan N 22BEC0965\nKunal Kumar 22BLC1028\nNote:\nThe above 
+	selected students are eligible for 2x offer\nALL THE BEST\n--
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

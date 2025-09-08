@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:cVRcigHNXTa9XwyhrohnK
+SUMMARY:Fwd: Deloitte India | Calling for Applications | VIT Vellore
+DTSTAMP:20250908T165411Z
+DTSTART:20250908T131900Z
+DESCRIPTION:Company: Fwd\nLocation: Online / Not Specified\nRole: *Profile 
+	7: **Analyst\, Deloitte India- Technology & Transformation – Human\nBatch:
+	 Not Mentioned\nDeadline: Mon Sep 08 2025\n\n---------- Forwarded message 
+	---------\nvitianscdc2026@vitstudent.ac.in>\nTo: <vitlions2026@vitbhopal.a
+	c.in>\, <students.cdc2026@vitap.ac.in>\, Vellore\nand Chennai Campus <viti
+	anscdc2026@vitstudent.ac.in>\n*RESTRICTED DREAM OFFER*\n*(Students selecte
+	d in Deloitte India are allowed for CTC 15.5 LPA and\nabove (2x only))*\n*
+	Deloitte Registration!!*\n*Please find the job description attached herewi
+	th!!*\n*Students are said to register in the below link on or before 09.09
+	.2025\n(5.00 pm)*\nhttps://forms.gle/vbQwCdiqQ7mry1AQ6\n*Important Note:*\
+	nØ  Students who are eligible for multiple profiles can choose a maximum o
+	f 5\nprofiles.\nØ  Students should fill the above google link after fillin
+	g the Deloitte link\nfurnished below.\nØ  last date of registration is 09*
+	.09.2025 (4.00 pm)* \, No further\nextension will be provided\nØ  Students
+	 placed in Deloitte are eligible only for the companies offering 2x
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

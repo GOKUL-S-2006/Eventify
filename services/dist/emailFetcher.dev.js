@@ -35,7 +35,6 @@ var config = {
     port: 993,
     tls: true,
     authTimeout: 10000,
-    // increase timeout
     tlsOptions: {
       rejectUnauthorized: false
     }
@@ -43,7 +42,7 @@ var config = {
 };
 
 var fetchEmailsAndCreateEvents = function fetchEmailsAndCreateEvents() {
-  var connection, searchCriteria, fetchOptions, messages, summaryText, attachments, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, all, rawBody, parsed, subject, text, eventData, icsFile, icsPath, txtPath;
+  var connection, searchCriteria, fetchOptions, messages, summaryText, attachments, tmpDir, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, all, parsed, subject, text, eventData, exists, icsDescription, icsFile, safeTitle, icsPath, txtPath;
 
   return regeneratorRuntime.async(function fetchEmailsAndCreateEvents$(_context) {
     while (1) {
@@ -61,10 +60,11 @@ var fetchEmailsAndCreateEvents = function fetchEmailsAndCreateEvents() {
           return regeneratorRuntime.awrap(connection.openBox("INBOX"));
 
         case 6:
-          // Search unread emails
-          searchCriteria = ["UNSEEN"];
+          searchCriteria = ["ALL"]; // only new unread mails
+
           fetchOptions = {
-            bodies: ["HEADER.FIELDS (FROM TO SUBJECT DATE)", "TEXT"],
+            bodies: [""],
+            // fetch full raw mail
             markSeen: true
           };
           _context.next = 10;
@@ -72,154 +72,198 @@ var fetchEmailsAndCreateEvents = function fetchEmailsAndCreateEvents() {
 
         case 10:
           messages = _context.sent;
-          // 📝 Collect summary + attachments
           summaryText = "📌 Placement Digest:\n\n";
           attachments = [];
+          tmpDir = path.join(__dirname, "../tmp");
+
+          if (!fs.existsSync(tmpDir)) {
+            fs.mkdirSync(tmpDir, {
+              recursive: true
+            });
+          }
+
           _iteratorNormalCompletion = true;
           _didIteratorError = false;
           _iteratorError = undefined;
-          _context.prev = 16;
+          _context.prev = 18;
           _iterator = messages[Symbol.iterator]();
 
-        case 18:
+        case 20:
           if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-            _context.next = 45;
+            _context.next = 62;
             break;
           }
 
           item = _step.value;
+          _context.prev = 22;
           all = item.parts.find(function (part) {
-            return part.which === "TEXT";
+            return part.which === "";
           });
-          rawBody = all.body; // Parse email content
 
-          _context.next = 24;
-          return regeneratorRuntime.awrap(simpleParser(rawBody));
-
-        case 24:
-          parsed = _context.sent;
-          subject = parsed.subject || "No Title";
-          text = parsed.text || ""; // Skip non-placement emails
-
-          if (isPlacementEmail(subject, text)) {
-            _context.next = 29;
+          if (!(!all || !all.body)) {
+            _context.next = 26;
             break;
           }
 
-          return _context.abrupt("continue", 42);
+          return _context.abrupt("continue", 59);
 
-        case 29:
-          // Extract structured placement event
+        case 26:
+          _context.next = 28;
+          return regeneratorRuntime.awrap(simpleParser(all.body));
+
+        case 28:
+          parsed = _context.sent;
+          subject = parsed.headers.get("subject") || parsed.subject || "Placement Drive";
+          text = parsed.text || parsed.html || "";
+
+          if (isPlacementEmail(subject, text)) {
+            _context.next = 33;
+            break;
+          }
+
+          return _context.abrupt("continue", 59);
+
+        case 33:
           eventData = parsePlacementEmail(subject, text);
 
           if (eventData) {
-            _context.next = 32;
+            _context.next = 36;
             break;
           }
 
-          return _context.abrupt("continue", 42);
+          return _context.abrupt("continue", 59);
 
-        case 32:
-          _context.next = 34;
+        case 36:
+          _context.next = 38;
+          return regeneratorRuntime.awrap(Event.findOne({
+            title: eventData.title,
+            "start.0": eventData.start[0],
+            // year
+            "start.1": eventData.start[1],
+            // month
+            "start.2": eventData.start[2] // day
+
+          }));
+
+        case 38:
+          exists = _context.sent;
+
+          if (!exists) {
+            _context.next = 42;
+            break;
+          }
+
+          console.log("\u26A0\uFE0F Skipped duplicate: ".concat(eventData.title));
+          return _context.abrupt("continue", 59);
+
+        case 42:
+          _context.next = 44;
           return regeneratorRuntime.awrap(Event.create(_objectSpread({}, eventData, {
             email: config.imap.user
           })));
 
-        case 34:
-          _context.next = 36;
+        case 44:
+          // ICS with richer description
+          icsDescription = "\nCompany: ".concat(eventData.company, "\nLocation: ").concat(eventData.location, "\nRole: ").concat(eventData.role || "N/A", "\nBatch: ").concat(eventData.batch || "N/A", "\nDeadline: ").concat(eventData.deadline || "N/A", "\n\n").concat(eventData.description, "\n        ").trim();
+          _context.next = 47;
           return regeneratorRuntime.awrap(generateICS({
             title: eventData.title,
-            description: eventData.description,
+            description: icsDescription,
             start: eventData.start,
             duration: eventData.duration
           }));
 
-        case 36:
-          icsFile = _context.sent;
-          // Save .ics temp file
-          icsPath = path.join(__dirname, "../tmp/".concat(eventData.title, ".ics"));
-          fs.writeFileSync(icsPath, icsFile);
-          attachments.push(icsPath); // Append to summary
-
-          summaryText += "\uD83D\uDD39 ".concat(eventData.title, "\nCompany: ").concat(eventData.company, "\nLocation: ").concat(eventData.location, "\nDate: ").concat(eventData.start.join("-"), "\n\n");
-          console.log("\u2705 Placement Event created: ".concat(eventData.title, " (").concat(eventData.company, ")"));
-
-        case 42:
-          _iteratorNormalCompletion = true;
-          _context.next = 18;
-          break;
-
-        case 45:
-          _context.next = 51;
-          break;
-
         case 47:
-          _context.prev = 47;
-          _context.t0 = _context["catch"](16);
-          _didIteratorError = true;
-          _iteratorError = _context.t0;
+          icsFile = _context.sent;
+          safeTitle = eventData.title.replace(/[^\w\s-]/g, "_");
+          icsPath = path.join(tmpDir, "".concat(safeTitle, ".ics"));
+          fs.writeFileSync(icsPath, icsFile);
+          attachments.push(icsPath); // Summary text
 
-        case 51:
-          _context.prev = 51;
-          _context.prev = 52;
+          summaryText += "\uD83D\uDD39 ".concat(eventData.title, "\nCompany: ").concat(eventData.company, "\nLocation: ").concat(eventData.location, "\nDate: ").concat(eventData.start.join("-"), "\nRole: ").concat(eventData.role || "N/A", "\nBatch: ").concat(eventData.batch || "N/A", "\nDeadline: ").concat(eventData.deadline || "N/A", "\nApply: ").concat(eventData.applyLink || "N/A", "\n\n");
+          console.log("\u2705 Placement Event created: ".concat(eventData.title));
+          _context.next = 59;
+          break;
+
+        case 56:
+          _context.prev = 56;
+          _context.t0 = _context["catch"](22);
+          console.error("⚠️ Failed to parse one email:", _context.t0.message);
+
+        case 59:
+          _iteratorNormalCompletion = true;
+          _context.next = 20;
+          break;
+
+        case 62:
+          _context.next = 68;
+          break;
+
+        case 64:
+          _context.prev = 64;
+          _context.t1 = _context["catch"](18);
+          _didIteratorError = true;
+          _iteratorError = _context.t1;
+
+        case 68:
+          _context.prev = 68;
+          _context.prev = 69;
 
           if (!_iteratorNormalCompletion && _iterator["return"] != null) {
             _iterator["return"]();
           }
 
-        case 54:
-          _context.prev = 54;
+        case 71:
+          _context.prev = 71;
 
           if (!_didIteratorError) {
-            _context.next = 57;
+            _context.next = 74;
             break;
           }
 
           throw _iteratorError;
 
-        case 57:
-          return _context.finish(54);
+        case 74:
+          return _context.finish(71);
 
-        case 58:
-          return _context.finish(51);
+        case 75:
+          return _context.finish(68);
 
-        case 59:
+        case 76:
           if (!(attachments.length > 0)) {
-            _context.next = 67;
+            _context.next = 84;
             break;
           }
 
-          // Save summary as TXT
-          txtPath = path.join(__dirname, "../tmp/summary.txt");
+          txtPath = path.join(tmpDir, "summary.txt");
           fs.writeFileSync(txtPath, summaryText);
-          attachments.push(txtPath); // Send single digest mail
-
-          _context.next = 65;
+          attachments.push(txtPath);
+          _context.next = 82;
           return regeneratorRuntime.awrap(sendEmail(config.imap.user, attachments, "Placement Digest"));
 
-        case 65:
-          _context.next = 68;
+        case 82:
+          _context.next = 85;
           break;
 
-        case 67:
+        case 84:
           console.log("No new placement emails found.");
 
-        case 68:
+        case 85:
           connection.end();
-          _context.next = 74;
+          _context.next = 91;
           break;
 
-        case 71:
-          _context.prev = 71;
-          _context.t1 = _context["catch"](0);
-          console.error("❌ Error fetching emails:", _context.t1);
+        case 88:
+          _context.prev = 88;
+          _context.t2 = _context["catch"](0);
+          console.error("❌ Error fetching emails:", _context.t2);
 
-        case 74:
+        case 91:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 71], [16, 47, 51, 59], [52,, 54, 58]]);
+  }, null, null, [[0, 88], [18, 64, 68, 76], [22, 56], [69,, 71, 75]]);
 };
 
 module.exports = {

@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:O1tqhjaKgyyCpcaTgtCxD
+SUMMARY:Placement Drive
+DTSTAMP:20250908T162306Z
+DTSTART:20250906T030800Z
+DESCRIPTION:---------- Forwarded message ---------\nFrom: 'Helpdesk CDC' vi
+	a VITIANS CDC Group\, Vellore and Chennai Campus <\nvitianscdc2026@vitstud
+	ent.ac.in>\nDate: Sat\, 6 Sep\, 2025\, 8:38 am\nSubject: Report Immediatel
+	y : Magna next round of selection is scheduled on\n6th September 2025 by 0
+	8:30 AM - ​Sarojini Gallery 6th floor SJT @ VIT\nVellore campus\nTo: <stud
+	ents.cdc2026@vitap.ac.in>\, Vellore and Chennai Campus <\nvitianscdc2026@v
+	itstudent.ac.in>\, <vitlions2026@vitbhopal.ac.in>\n\n\n*REPORT IMMEDIATELY
+	 :  IM*agna next round of selection *is scheduled\non **6**th September 20
+	25\nby 08:30 AM **- Sarojini Gallery 6th floor SJT** @ VIT Vellore campus*
+	\n
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

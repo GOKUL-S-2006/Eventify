@@ -16,7 +16,7 @@ const config = {
     host: "imap.gmail.com",
     port: 993,
     tls: true,
-    authTimeout: 10000, // increase timeout
+    authTimeout: 10000,
     tlsOptions: { rejectUnauthorized: false },
   },
 };
@@ -26,68 +26,97 @@ const fetchEmailsAndCreateEvents = async () => {
     const connection = await imaps.connect({ imap: config.imap });
     await connection.openBox("INBOX");
 
-    // Search unread emails
-    const searchCriteria = ["UNSEEN"];
+    const searchCriteria = ["ALL"]; // only new unread mails
     const fetchOptions = {
-      bodies: ["HEADER.FIELDS (FROM TO SUBJECT DATE)", "TEXT"],
+      bodies: [""], // fetch full raw mail
       markSeen: true,
     };
 
     const messages = await connection.search(searchCriteria, fetchOptions);
 
-    // 📝 Collect summary + attachments
     let summaryText = "📌 Placement Digest:\n\n";
     let attachments = [];
 
+    const tmpDir = path.join(__dirname, "../tmp");
+    if (!fs.existsSync(tmpDir)) {
+      fs.mkdirSync(tmpDir, { recursive: true });
+    }
+
     for (const item of messages) {
-      const all = item.parts.find((part) => part.which === "TEXT");
-      const rawBody = all.body;
+      try {
+        const all = item.parts.find((part) => part.which === "");
+        if (!all || !all.body) continue;
 
-      // Parse email content
-      const parsed = await simpleParser(rawBody);
-      const subject = parsed.subject || "No Title";
-      const text = parsed.text || "";
+        const parsed = await simpleParser(all.body);
+        const subject =
+          parsed.headers.get("subject") || parsed.subject || "Placement Drive";
+        const text = parsed.text || parsed.html || "";
 
-      // Skip non-placement emails
-      if (!isPlacementEmail(subject, text)) continue;
+        if (!isPlacementEmail(subject, text)) continue;
 
-      // Extract structured placement event
-      const eventData = parsePlacementEmail(subject, text);
-      if (!eventData) continue; // skip if no date found
+        const eventData = parsePlacementEmail(subject, text);
+        if (!eventData) continue;
 
-      // Save to DB
-      await Event.create({ ...eventData, email: config.imap.user });
+        // ✅ Avoid duplicates (same title + date)
+        const exists = await Event.findOne({
+          title: eventData.title,
+          "start.0": eventData.start[0], // year
+          "start.1": eventData.start[1], // month
+          "start.2": eventData.start[2], // day
+        });
+        if (exists) {
+          console.log(`⚠️ Skipped duplicate: ${eventData.title}`);
+          continue;
+        }
 
-      // Generate .ics file
-      const icsFile = await generateICS({
-        title: eventData.title,
-        description: eventData.description,
-        start: eventData.start,
-        duration: eventData.duration,
-      });
+        await Event.create({ ...eventData, email: config.imap.user });
 
-      // Save .ics temp file
-      const icsPath = path.join(__dirname, `../tmp/${eventData.title}.ics`);
-      fs.writeFileSync(icsPath, icsFile);
-      attachments.push(icsPath);
+        // ICS with richer description
+        const icsDescription = `
+Company: ${eventData.company}
+Location: ${eventData.location}
+Role: ${eventData.role || "N/A"}
+Batch: ${eventData.batch || "N/A"}
+Deadline: ${eventData.deadline || "N/A"}
 
-      // Append to summary
-      summaryText += `🔹 ${eventData.title}\nCompany: ${eventData.company}\nLocation: ${eventData.location}\nDate: ${eventData.start.join(
-        "-"
-      )}\n\n`;
+${eventData.description}
+        `.trim();
 
-      console.log(
-        `✅ Placement Event created: ${eventData.title} (${eventData.company})`
-      );
+        const icsFile = await generateICS({
+          title: eventData.title,
+          description: icsDescription,
+          start: eventData.start,
+          duration: eventData.duration,
+        });
+
+        const safeTitle = eventData.title.replace(/[^\w\s-]/g, "_");
+        const icsPath = path.join(tmpDir, `${safeTitle}.ics`);
+        fs.writeFileSync(icsPath, icsFile);
+        attachments.push(icsPath);
+
+        // Summary text
+        summaryText += `🔹 ${eventData.title}
+Company: ${eventData.company}
+Location: ${eventData.location}
+Date: ${eventData.start.join("-")}
+Role: ${eventData.role || "N/A"}
+Batch: ${eventData.batch || "N/A"}
+Deadline: ${eventData.deadline || "N/A"}
+Apply: ${eventData.applyLink || "N/A"}
+
+`;
+
+        console.log(`✅ Placement Event created: ${eventData.title}`);
+      } catch (err) {
+        console.error("⚠️ Failed to parse one email:", err.message);
+      }
     }
 
     if (attachments.length > 0) {
-      // Save summary as TXT
-      const txtPath = path.join(__dirname, "../tmp/summary.txt");
+      const txtPath = path.join(tmpDir, "summary.txt");
       fs.writeFileSync(txtPath, summaryText);
       attachments.push(txtPath);
 
-      // Send single digest mail
       await sendEmail(config.imap.user, attachments, "Placement Digest");
     } else {
       console.log("No new placement emails found.");

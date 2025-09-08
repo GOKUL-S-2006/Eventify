@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 
-const sendEmail = async (to, filePaths, subject = "Your Events Digest") => {
+const sendEmail = async (to, filePaths, subject = "Your Placements Digest") => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail", // you can switch to "outlook" etc.

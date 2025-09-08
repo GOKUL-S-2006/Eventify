@@ -1,0 +1,32 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:r9QGKJnWvOXo0il84z4OE
+SUMMARY:Fwd: Movate - Super Dream Internship - 2026 Batch
+DTSTAMP:20250908T163007Z
+DTSTART:20250905T071100Z
+DESCRIPTION:---------- Forwarded message ---------\nvitianscdc2026@vitstude
+	nt.ac.in>\nTo: MBA 2024 Group\, Vellore Campus <24mba@vitstudent.ac.in>\, 
+	<\nstudents.cdc2026@vitap.ac.in>\, Vellore and Chennai Campus <\nvitianscd
+	c2026@vitstudent.ac.in>\, <vitlions2026@vitbhopal.ac.in>\nCc: <rajendra.ma
+	hanandia@vitbhopal.ac.in>\nMovate  - Super Dream Internship - 2026 Batch\n
+	*Movate* is a digital technology and customer experience services\ncompany
+	 committed to disrupting the industry with boundless agility\,\nhuman-cent
+	ered innovation\, and relentless focus on driving client outcomes.\nMovate
+	 has built a niche as a trusted and reliable provider of consumer and\nent
+	erprise support and technology services. Besides offering managed IT and C
+	X\nservices\n<https://www.movate.com/services/digital-customer-experience/
+	cx-transformation-as-a-service/>\,\nwe leverage our five AI-powered propri
+	etary platforms to provide\nbest-in-class results. Today\, we have tremend
+	ous recognition for our\ndisruptive digital engineering capabilities\n<htt
+	ps://www.movate.com/services/digital-engineering-and-insights/app-developm
+	ent-and-maintenance/>\,\ninsights-driven approach\, affinity towards custo
+	mer business\, employee\nempowerment\, and use of AI and automation soluti
+	ons\, which differentiate us
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

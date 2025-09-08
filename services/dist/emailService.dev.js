@@ -15,7 +15,7 @@ var sendEmail = function sendEmail(to, filePaths) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          subject = _args.length > 2 && _args[2] !== undefined ? _args[2] : "Your Events Digest";
+          subject = _args.length > 2 && _args[2] !== undefined ? _args[2] : "Your Placements Digest";
           _context.prev = 1;
           transporter = nodemailer.createTransport({
             service: "gmail",

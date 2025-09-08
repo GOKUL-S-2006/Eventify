@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:vMLm6CbLFpfRv7lOOVO8s
+SUMMARY:Fwd: Report Immediately : Magna next round of selection is schedule
+	d on 6th September 2025 by 08:30 AM - ​Sarojini Gallery 6th floor SJT @ VI
+	T Vellore campus
+DTSTAMP:20250908T163006Z
+DTSTART:20250906T030800Z
+DESCRIPTION:---------- Forwarded message ---------\nvitianscdc2026@vitstude
+	nt.ac.in>\n6th September 2025 by 08:30 AM - ​Sarojini Gallery 6th floor SJ
+	T @ VIT\nVellore campus\nTo: <students.cdc2026@vitap.ac.in>\, Vellore and 
+	Chennai Campus <\nvitianscdc2026@vitstudent.ac.in>\, <vitlions2026@vitbhop
+	al.ac.in>\n*REPORT IMMEDIATELY :  IM*agna next round of selection *is sche
+	duled\non **6**th September 2025\nby 08:30 AM **- Sarojini Gallery 6th flo
+	or SJT** @ VIT Vellore campus*\n*Find the below attached shortlisted candi
+	dates list*\nAll the shortlisted candidates are informed to report in VIT 
+	Vellore campus\nfor the interview process.\n*Note: *\n*Candidates failed t
+	o attend the interviews will be blacklisted from\nfurther campus recruitme
+	nts*\n*Note:*\n1. Students are requested to send their queries to their re
+	spective DABB ID\nonly.\n2. The Webcam Should be turned on till the test i
+	s over.\n*Important Note:*
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

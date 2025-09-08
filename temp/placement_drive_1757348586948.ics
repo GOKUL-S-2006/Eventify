@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:fMlTv9oxQfXvJYMYkSv6I
+SUMMARY:Placement Drive
+DTSTAMP:20250908T162306Z
+DTSTART:20250905T125100Z
+DESCRIPTION:---------- Forwarded message ---------\nFrom: 'Helpdesk CDC' vi
+	a VITIANS CDC Group\, Vellore and Chennai Campus <\nvitianscdc2026@vitstud
+	ent.ac.in>\nDate: Fri\, 5 Sep\, 2025\, 6:21 pm\nSubject: ​WTW Super Dream 
+	Offer Registration – 2026 Batch.\nTo: <vitlions2026@vitbhopal.ac.in>\, <st
+	udents.cdc2026@vitap.ac.in>\, Vellore\nand Chennai Campus <vitianscdc2026@
+	vitstudent.ac.in>\n\n\n*WTW Super Dream Offer Registration – 2026 Batch.*\
+	n\n\n\n*Insurance Consulting Analyst Engineer*\n
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR

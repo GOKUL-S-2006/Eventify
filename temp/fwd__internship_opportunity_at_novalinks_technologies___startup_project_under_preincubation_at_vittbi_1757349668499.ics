@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:z9OrkgB57p3j4WXmZMixS
+SUMMARY:Fwd: Internship Opportunity at NovaLinks Technologies - startup pro
+	ject under preincubation at VITTBI
+DTSTAMP:20250908T164108Z
+DTSTART:20250908T152000Z
+DESCRIPTION:Company: Fwd\nLocation: Vellore\nRole: Not Specified\nBatch: No
+	t Mentioned\nDeadline: Not Mentioned\n\n---------- Forwarded message -----
+	----\n<23bcs@vitstudent.ac.in>\nproject under preincubation at VITTBI\nTo:
+	 allstudents.vellore <allstudents.vellore@vit.ac.in>\nPl see below for det
+	ails:\nDr.A.Balachandran PhD\nDirector\nVIT-Technology Business Incubator 
+	(VITTBI)\nVellore Institute of Technology\nVellore\n632014\nTel:   0091-41
+	6-2243097\n0091-416-2202301\nwww.vittbi.com\n---------- Forwarded message 
+	---------\nproject under preincubation at VITTBI\nTo: Director TBI <direct
+	or.tbi@vit.ac.in>\nForwarding internship call from Novalinks...\n---------
+	- Forwarded message ---------\nTo: Nishanth Corera K <nishanthcorera.k@vit
+	.ac.in>\, TBI Coordinator <
+DURATION:PT1H
+END:VEVENT
+END:VCALENDAR
